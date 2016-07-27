@@ -15,7 +15,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 const router = (
 	<Router history={ browserHistory }>
 		<Route path="/" component={ App }>
-			<IndexRoute component={ LandingPage }></IndexRoute>
+			<IndexRoute name="Home"component={ LandingPage }></IndexRoute>
 			<Route path="/documentation" component={ DocumentationPage }></Route>
 			<Route path="/demo" component={ DemoPage }></Route>
 		</Route>

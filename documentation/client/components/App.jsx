@@ -10,6 +10,7 @@ import { PageHeader } from 'react-bootstrap';
 export default class App extends React.Component {
 
 	componentDidMount(){
+    window.props = this.props.children;
 	}
   render () {
     return (

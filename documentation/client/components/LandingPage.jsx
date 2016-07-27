@@ -17,3 +17,9 @@ export default class LandingPage extends React.Component {
   }
 }
 
+// export default const landingPageInstance = (
+//     <LandingPage />
+//   );
+
+// export default landingPageInstance;
+
