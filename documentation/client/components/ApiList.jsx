@@ -16,53 +16,78 @@ export default class ApiList extends React.Component {
               <th>Description</th>
             </thead>
             <tbody>
-
-
-            <tr>
-        <td>bordered</td>
-        <td>boolean</td>
-        <td>false</td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td>bsClass</td>
-        <td>string</td>
-        <td>'table'</td>
-        <td>Base CSS class and prefix for the component. Generally one should only change bsClass to provide new, non-Bootstrap, CSS styles for a component.
-
-</td>
-      </tr>
-
-      <tr>
-        <td>condensed</td>
-        <td>boolean</td>
-        <td>false</td>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td>hover</td>
-        <td>boolean</td>
-        <td>false</td>
-        <td></td>
-      </tr>
-            <tr>
-        <td>responsive</td>
-        <td>boolean</td>
-        <td>false</td>
-        <td></td>
-      </tr>
-            <tr>
-        <td>striped</td>
-        <td>boolean</td>
-        <td>false</td>
-        <td></td>
-      </tr>
-
-
-
-
+              <tr>
+                <td>recognitionAlgorithm</td>
+                <td>string</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>recognitionTime</td>
+                <td>number</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>recognitionListener</td>
+                <td>function</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>undoListener</td>
+                <td>function</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>redoListener</td>
+                <td>function</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>clearCanvasListener</td>
+                <td>function</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>width</td>
+                <td>number</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>height</td>
+                <td>number</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>beautification</td>
+                <td>boolean</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>color</td>
+                <td>string</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>disabledGestures</td>
+                <td>string[]</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>enabledGestures</td>
+                <td>string[]</td>
+                <td></td>
+                <td></td>
+              </tr>
             </tbody>
         </Table>
           

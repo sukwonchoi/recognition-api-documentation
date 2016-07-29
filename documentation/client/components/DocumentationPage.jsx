@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import ApiList from './ApiList.jsx'
-// App component - represents the whole app
 
 export default class DocumentationPage extends React.Component {
 	render(){
@@ -13,4 +12,7 @@ export default class DocumentationPage extends React.Component {
 	}
 }
 
-// export default (<DocumentationPage title="Documentation"/>);
+// const exp = (
+// 		<DocumentationPage title="Documentation" />
+// 	);
+// export default exp;
