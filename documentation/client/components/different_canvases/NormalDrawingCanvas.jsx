@@ -29,8 +29,9 @@ export default class NormalDrawingCanvas extends React.Component {
 							undoListener={this.test} 
 							redoListener={this.test} 
 							clearCanvasListener={this.test}
-							width= {screen.width * 0.8}
-							height= {screen.height * 0.5}
+							addGestureListener={this.test}
+							width= {String(screen.width * 0.8)}
+							height= {String(screen.height * 0.5)}
 							beautification={false}
 							disabledGestures={[""]}
 							enabledGestures={[""]}

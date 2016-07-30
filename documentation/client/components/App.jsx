@@ -13,11 +13,21 @@ export default class App extends React.Component {
     window.props = this.props.children;
 	}
   render () {
+
+    const containerStyle = {
+
+      "backgroundColor" : "grey",
+    };
+
     return (
       <div>
         <NavigationBar />
-        <PageHeader>
-          <div className="container">Documentation</div>
+        <PageHeader style={containerStyle}>
+          <div className="bs-docs-header">
+            <div className="container">
+              Documentation
+            </div>
+          </div>
         </PageHeader>
         <div className="container bs-docs-container">
           {this.props.children}

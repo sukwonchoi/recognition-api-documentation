@@ -1,16 +1,37 @@
 import React, { Component } from 'react';
 import RecognitionCanvas from 'recognition-canvas';
+import Codemirror from 'react-codemirror';
+import { Accordion, Panel } from 'react-bootstrap';
 
-import UndoRedoCanvas from './different_canvases/UndoRedoCanvas.jsx'
-import NormalDrawingCanvas from './different_canvases/NormalDrawingCanvas.jsx'
-import ColorCanvas from './different_canvases/ColorCanvas.jsx'
-import RecognitionOnlyCanvas from './different_canvases/RecognitionOnlyCanvas.jsx'
-import BeautificationCanvas from './different_canvases/BeautificationCanvas.jsx'
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/mode/jsx/jsx';
+import 'codemirror/theme/zenburn.css';
+
+import UndoRedoCanvas from './different_canvases/UndoRedoCanvas.jsx';
+import NormalDrawingCanvas from './different_canvases/NormalDrawingCanvas.jsx';
+import ColorCanvas from './different_canvases/ColorCanvas.jsx';
+import RecognitionOnlyCanvas from './different_canvases/RecognitionOnlyCanvas.jsx';
+import BeautificationCanvas from './different_canvases/BeautificationCanvas.jsx';
 
 export default class DemoPage extends React.Component {
 	
 	constructor(){
 		super();
+		this.state = {
+			code :
+				`
+import React, { Component } from 'react';
+import RecognitionCanvas from 'recognition-canvas'
+export default class UndoRedoCanvas extends React.Component {
+
+}`,
+		}
+
+		this.updateCode = this.updateCode.bind(this);
+	}
+
+	updateCode(newCode){
+		console.log(newCode);
 	}
 
 	render(){
@@ -19,241 +40,36 @@ export default class DemoPage extends React.Component {
 		const normalDrawingCanvas = "";
 		const colorCanvas = "";
 		const recognitionOnlyCanvas = "";
-		const beautificationCanvas = "";
-
+		const beautificationCanvas = "";	
+		
+		var options = {
+			lineNumbers: true,
+			readOnly: this.state.readOnly,
+			mode: "javascript"
+		}
 
 		return(
 				<div>
-					<div>
-						<h1>Undo and Redo</h1>
-						<UndoRedoCanvas />
-						<pre>
-							<code>
-							{`
-
-import React, { Component } from 'react';
-import RecognitionCanvas from 'recognition-canvas';
-
-export default class UndoRedoCanvas extends React.Component {
-	
-  constructor(){
-	super();
-	this.test = this.test.bind(this);
-	this.alg = "$p";
-  }
-
-  test(){
-	console.log("test");
-  }
-
-  render(){
-    return(
-      <div>
-		<RecognitionCanvas
-		  recognitionAlgorithm={this.alg}
-		  recognitionTime={1000}
-		  recognitionListener={this.test}
-		  undoListener={this.test}
-		  redoListener={this.test}
-		  clearCanvasListener={this.test}
-		  width= {screen.width * 0.8}
-		  height= {screen.height * 0.5}
-		  beautification={false}
-		  disabledGestures={[""]}
-		  enabledGestures={[""]}
-	   />
-	  </div>
-    );
-  }
-}
-			          		`}
-			          		</code>
-			         	</pre>
-					</div>
-					<div>
-						<h1>Drawing</h1>
-						<NormalDrawingCanvas />
-						<pre>
-							<code>
-							{`
-
-import React, { Component } from 'react';
-import RecognitionCanvas from 'recognition-canvas';
-
-export default class NormalDrawingCanvas extends React.Component {
-	
-  constructor(){
-	super();
-	this.test = this.test.bind(this);
-	this.alg = "$p";
-  }
-
-  test(){
-	console.log("test");
-  }
-
-  render(){
-    return(
-      <div>
-	    <RecognitionCanvas
-	      recognitionAlgorithm={this.alg}
-	      recognitionTime={1000}
-		  recognitionListener={this.test}
-		  undoListener={this.test}
-		  redoListener={this.test}
-		  clearCanvasListener={this.test}
-		  width= {screen.width * 0.8}
-		  height= {screen.height * 0.5}
-		  beautification={false}
-		  disabledGestures={[""]}
-		  enabledGestures={[""]}
-	   />
-	  </div>
-    );
-  }
-}
-			          		`}
-			          		</code>
-			         	</pre>
-					</div>
-					<div>
-						<h1>Colors</h1>
-						<ColorCanvas />
-						<pre>
-							<code>
-							{`
-
-import React, { Component } from 'react';
-import RecognitionCanvas from 'recognition-canvas';
-
-export default class ColorCanvas extends React.Component {
-	
-  constructor(){
-	super();
-	this.test = this.test.bind(this);
-	this.alg = "$p";
-  }
-
-  test(){
-	console.log("test");
-  }
-
-  render(){
-    return(
-      <div>
-	    <RecognitionCanvas
-	      recognitionAlgorithm={this.alg}
-	      recognitionTime={1000}
-		  recognitionListener={this.test}
-		  undoListener={this.test}
-		  redoListener={this.test}
-		  clearCanvasListener={this.test}
-		  width= {screen.width * 0.8}
-		  height= {screen.height * 0.5}
-		  beautification={false}
-		  disabledGestures={[""]}
-		  enabledGestures={[""]}
-	   />
-	  </div>
-    );
-  }
-}
-			          		`}
-			          		</code>
-			         	</pre>
-					</div>
-					<div>
-						<h1>Recognition - Static</h1>
-						<RecognitionOnlyCanvas />
-						<pre>
-							<code>
-							{`
-
-import React, { Component } from 'react';
-import RecognitionCanvas from 'recognition-canvas';
-
-export default class RecognitionOnlyCanvas extends React.Component {
-	
-  constructor(){
-	super();
-	this.test = this.test.bind(this);
-	this.alg = "$p";
-  }
-
-  test(){
-	console.log("test");
-  }
-
-  render(){
-    return(
-      <div>
-	    <RecognitionCanvas
-	      recognitionAlgorithm={this.alg}
-	      recognitionTime={1000}
-		  recognitionListener={this.test}
-		  undoListener={this.test}
-		  redoListener={this.test}
-		  clearCanvasListener={this.test}
-		  width= {screen.width * 0.8}
-		  height= {screen.height * 0.5}
-		  beautification={false}
-		  disabledGestures={[""]}
-		  enabledGestures={[""]}
-	   />
-	  </div>
-    );
-  }
-}
-			          		`}
-			          		</code>
-			         	</pre>
-					</div>
-					<div>
-						<h1>Beautification</h1>
-						<BeautificationCanvas />
-						<pre>
-							<code>
-							{`
-
-import React, { Component } from 'react';
-import RecognitionCanvas from 'recognition-canvas';
-
-export default class BeautificationCanvas extends React.Component {
-	
-  constructor(){
-	super();
-	this.test = this.test.bind(this);
-	this.alg = "$p";
-  }
-
-  test(){
-	console.log("test");
-  }
-
-  render(){
-    return(
-      <div>
-	    <RecognitionCanvas
-	      recognitionAlgorithm={this.alg}
-	      recognitionTime={1000}
-		  recognitionListener={this.test}
-		  undoListener={this.test}
-		  redoListener={this.test}
-		  clearCanvasListener={this.test}
-		  width= {screen.width * 0.8}
-		  height= {screen.height * 0.5}
-		  beautification={false}
-		  disabledGestures={[""]}
-		  enabledGestures={[""]}
-	   />
-	  </div>
-    );
-  }
-}
-			          		`}
-			          		</code>
-			         	</pre>
-					</div>
+					<Panel header="Undo and Redo" eventKey="1">
+					 	<UndoRedoCanvas />
+						<Codemirror value={this.state.code} onChange={this.updateCode} options={options} ref="cm"/>
+					</Panel>
+					<Panel header="Beautification" eventKey="2">
+					 	<BeautificationCanvas />
+						<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
+					</Panel>
+					<Panel header="Normal" eventKey="3">
+					   	<NormalDrawingCanvas />
+						<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
+					</Panel>
+					<Panel header="Recognition" eventKey="4">
+					   	<RecognitionOnlyCanvas />
+						<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
+					</Panel>
+					<Panel header="Color" eventKey="5">
+					   	<ColorCanvas />
+						<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
+					</Panel>
 				</div>
 			);
 		

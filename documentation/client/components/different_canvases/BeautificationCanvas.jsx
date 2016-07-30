@@ -28,9 +28,10 @@ export default class BeautificationCanvas extends React.Component {
 							recognitionListener={this.test}
 							undoListener={this.test} 
 							redoListener={this.test} 
+							addGestureListener={this.test}
 							clearCanvasListener={this.test}
-							width= {screen.width * 0.8}
-							height= {screen.height * 0.5}
+							width= {String(screen.width * 0.8)}
+							height= {String(screen.height * 0.5)}
 							beautification={false}
 							disabledGestures={[""]}
 							enabledGestures={[""]}
