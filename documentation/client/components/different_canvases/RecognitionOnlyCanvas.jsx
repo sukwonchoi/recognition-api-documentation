@@ -29,8 +29,8 @@ export default class RecognitionOnlyCanvas extends React.Component {
 							undoListener={this.test} 
 							redoListener={this.test} 
 							clearCanvasListener={this.test}
-							width= {screen.width * 0.8}
-							height= {screen.height * 0.5}
+							width= {"100%"}
+							height= {"100%"}
 							beautification={false}
 							disabledGestures={[""]}
 							enabledGestures={[""]}

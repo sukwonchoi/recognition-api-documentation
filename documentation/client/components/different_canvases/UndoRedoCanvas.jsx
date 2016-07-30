@@ -29,8 +29,8 @@ export default class UndoRedoCanvas extends React.Component {
 							undoListener={this.test} 
 							redoListener={this.test} 
 							clearCanvasListener={this.test}
-							width= {screen.width * 0.8}
-							height= {screen.height * 0.5}
+							width= {"100vw"}
+							height= {"100vh"}
 							beautification={false}
 							disabledGestures={[""]}
 							enabledGestures={[""]}
