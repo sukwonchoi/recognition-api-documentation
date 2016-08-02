@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
 import RecognitionCanvas from 'recognition-canvas';
 
+import { Button, ButtonToolbar } from 'react-bootstrap'
+
 export default class BeautificationCanvas extends React.Component {
 	
 	constructor(){
 		super();
 		this.test = this.test.bind(this);
 		this.alg = "$p";
+
+		this.state = {
+			recognitionAlgorithm: "$p",
+      disabledGestures: ["Vertical Line", "Horizontal Line"],
+      enabledGestures: ["X", "O"],
+      recognitionAlgorithm: "$p",
+      undo: false,
+      redo: false,
+      clearRecognitionCanvas: false,
+  	};
 	}
 
 	test(){
@@ -23,18 +35,20 @@ export default class BeautificationCanvas extends React.Component {
 		return(
 				<div>
 					<div style={divStyle}>
-						<RecognitionCanvas recognitionAlgorithm={this.alg} 
-							recognitionTime={1000} 
-							recognitionListener={this.test}
-							undoListener={this.test} 
-							redoListener={this.test} 
-							addGestureListener={this.test}
+						<RecognitionCanvas recognitionAlgorithm={this.state.recognitionAlgorithm} 
+							recognitionTime={600} 
+							recognitionListener={this.recognitionCallback}
+							undo={this.state.undo}
+							redo={this.state.redo}
+							undoListener={this.undoCallback} 
+							redoListener={this.redoCallback} 
 							clearCanvasListener={this.test}
+							addGestureListener={this.test}
 							width= {String(screen.width * 0.8)}
 							height= {String(screen.height * 0.5)}
 							beautification={false}
-							disabledGestures={[""]}
-							enabledGestures={[""]}
+							disabledGestures={this.state.disabledGestures}
+							enabledGestures={this.state.enabledGestures}
 						/>
 					</div>
 				</div>

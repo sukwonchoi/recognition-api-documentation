@@ -3,6 +3,7 @@ import RecognitionCanvas from 'recognition-canvas';
 import { ChromePicker } from 'react-color'
 
 
+import { Button, ButtonToolbar } from 'react-bootstrap'
 export default class ColorCanvas extends React.Component {
 	
 	
@@ -48,18 +49,19 @@ export default class ColorCanvas extends React.Component {
 
 		const divStyle = {
 	      border: '1px solid black',
+	      position: 'relative',
     	};
 
     const popover = {
       position: 'absolute',
       zIndex: '2',
+      left: 0,
+      bottom: 30,
     }
     const cover = {
-      position: 'fixed',
-      top: '0',
-      right: '0',
-      bottom: '0',
-      left: '0',
+      position: 'relative',
+      top: 0,
+      left: 0,
     }
 
 
@@ -80,12 +82,12 @@ export default class ColorCanvas extends React.Component {
 							disabledGestures={[""]}
 							enabledGestures={[""]}
 						/>
-						<button onClick={ this.handleClick }> Pick Color</button>
+						<Button onClick={ this.handleClick }> Pick Color</Button>
 						{ this.state.displayColorPicker ? <div style={ popover }>
 
 							<div style={ cover } onClick={ this.handleClose }/>
-							<ChromePicker onChangeComplete={ this.handleChange }/>
-						</div> : null }
+								<ChromePicker onChangeComplete={ this.handleChange }/>
+							</div> : null }
 
 					</div>
 				</div>

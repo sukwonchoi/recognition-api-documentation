@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import RecognitionCanvas from 'recognition-canvas';
 
+import { Button, ButtonToolbar } from 'react-bootstrap'
+
 export default class NormalDrawingCanvas extends React.Component {
 	
 	constructor(){
