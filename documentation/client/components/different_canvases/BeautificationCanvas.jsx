@@ -7,22 +7,16 @@ export default class BeautificationCanvas extends React.Component {
 	
 	constructor(){
 		super();
-		this.test = this.test.bind(this);
-		this.alg = "$p";
 
+		this.recognitionCallback = this.recognitionCallback.bind(this);
+	
 		this.state = {
-			recognitionAlgorithm: "$p",
-      disabledGestures: ["Vertical Line", "Horizontal Line"],
-      enabledGestures: ["X", "O"],
-      recognitionAlgorithm: "$p",
-      undo: false,
-      redo: false,
-      clearRecognitionCanvas: false,
-  	};
+	      enabledGestures: ["X", "O", "Vertical Line", "Horizontal Line"],
+	  	};
 	}
 
-	test(){
-		console.log("test");
+	recognitionCallback(gesture){
+		console.log(gesture.shape);
 	}
 
 	render(){
@@ -31,23 +25,15 @@ export default class BeautificationCanvas extends React.Component {
 	      border: '2px solid black',
     	};
 
-
 		return(
 				<div>
 					<div style={divStyle}>
-						<RecognitionCanvas recognitionAlgorithm={this.state.recognitionAlgorithm} 
+						<RecognitionCanvas 
 							recognitionTime={600} 
-							recognitionListener={this.recognitionCallback}
-							undo={this.state.undo}
-							redo={this.state.redo}
-							undoListener={this.undoCallback} 
-							redoListener={this.redoCallback} 
-							clearCanvasListener={this.test}
-							addGestureListener={this.test}
+							recognitionHandler={this.recognitionCallback}
 							width= {String(screen.width * 0.8)}
 							height= {String(screen.height * 0.5)}
-							beautification={false}
-							disabledGestures={this.state.disabledGestures}
+							beautification={true}
 							enabledGestures={this.state.enabledGestures}
 						/>
 					</div>

@@ -7,7 +7,6 @@ export default class UndoRedoCanvas extends React.Component {
 	
 	constructor(){
 		super();
-		this.test = this.test.bind(this);
 		this.recognitionCallback = this.recognitionCallback.bind(this);
 		this.undo = this.undo.bind(this);
 		this.undoCallback = this.undoCallback.bind(this);
@@ -16,42 +15,34 @@ export default class UndoRedoCanvas extends React.Component {
 
 
 		this.state = {
-			recognitionAlgorithm: "$p",
-      disabledGestures: ["Vertical Line", "Horizontal Line"],
-      enabledGestures: ["X", "O"],
-      recognitionAlgorithm: "$p",
-      undo: false,
-      redo: false,
-      clearRecognitionCanvas: false,
-  	};
+      		enabledGestures: ["X", "O"],
+      		undo: false,
+      		redo: false,
+  		};
 	}
 
 	recognitionCallback(gesture){  
-    console.log("recognition callback ");
-    console.log(gesture);
-  }
+	    console.log("recognition callback ");
+	    console.log(gesture);
+  	}
 
 	undo(){
-    this.setState({ undo: true });
-  }
+    	this.setState({ undo: true });
+  	}
 
 	redo(){
-		console.log("redo");
-    this.setState({ redo: true });
-  } 
+    	this.setState({ redo: true });
+  	} 
 
 	redoCallback(gesture){
 		this.setState({ redo: false });
-    console.log("redid gesture: " + gesture.shape);
-  }
+    	console.log("redid gesture: " + gesture.shape);
+  	}
 
-  undoCallback(gesture){
+ 	undoCallback(gesture){
 		this.setState({ undo: false });
-    console.log("undid gesture: " + gesture.shape);
-  }
-
-	test(){
-	}
+    	console.log("undid gesture: " + gesture.shape);
+  	}
 
 	render(){
 
@@ -63,19 +54,16 @@ export default class UndoRedoCanvas extends React.Component {
 		return(
 				<div>
 					<div style={divStyle}>
-						<RecognitionCanvas recognitionAlgorithm={this.state.recognitionAlgorithm} 
-							recognitionTime={600} 
-							recognitionListener={this.recognitionCallback}
-							undo={this.state.undo}
-							redo={this.state.redo}
-							undoListener={this.undoCallback} 
-							redoListener={this.redoCallback} 
-							clearCanvasListener={this.test}
-							addGestureListener={this.test}
+						<RecognitionCanvas 
+							recognitionTime={0} 
+							doUndo={this.state.undo}
+							doRedo={this.state.redo}
+							undoHandler={this.undoCallback} 
+							redoHandler={this.redoCallback}
+							recognitionHandler={this.recognitionCallback}
 							width= {String(screen.width * 0.8)}
 							height= {String(screen.height * 0.5)}
 							beautification={false}
-							disabledGestures={this.state.disabledGestures}
 							enabledGestures={this.state.enabledGestures}
 						/>
 						<ButtonToolbar>

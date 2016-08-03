@@ -1,94 +1,66 @@
 import React, { Component } from 'react';
 import RecognitionCanvas from 'recognition-canvas';
-import { ChromePicker } from 'react-color'
+import { Button, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap'
 
-
-import { Button, ButtonToolbar } from 'react-bootstrap'
 export default class ColorCanvas extends React.Component {
 	
-	
-
 	constructor(){
 		super();
 
 		this.state = {
-      displayColorPicker: false,
-      color: "#000000",
-  };
+		    color: "#000000",
+		    clearRecognitionCanvas: false,
+		};
 
-		this.test = this.test.bind(this);
-		this.alg = "$p";
-
-		this.handleChange = this.handleChange.bind(this);
-		this.handleClick = this.handleClick.bind(this);
-		this.handleClose = this.handleClose.bind(this);
+		this.handleSelect = this.handleSelect.bind(this);
+		this.clearCanvas = this.clearCanvas.bind(this);
+		this.clearCanvasCallback = this.clearCanvasCallback.bind(this);
 	}
 
-	test(){
-		console.log("test");
-	}
-
-	handleChange(color){
-
-		this.setState({ 
-			color: color.hex,
-			displayColorPicker: false
+	handleSelect(eventKey, event){
+		this.setState({
+			color: eventKey,
 		});
 	}
 
-	handleClick() {    
-		console.log("Handle close triggered");
-		this.setState({ displayColorPicker: !this.state.displayColorPicker });
-	};
-
-	handleClose() {
-		this.setState({ displayColorPicker: false });
-	};
+	clearCanvas(){
+	  	this.setState({
+	      clearRecognitionCanvas: true,
+	    });
+	}
+	
+	clearCanvasCallback(){
+		this.setState({
+	      clearRecognitionCanvas: false,
+	    });
+	 }
 
 	render(){
-
 		const divStyle = {
 	      border: '1px solid black',
-	      position: 'relative',
     	};
-
-    const popover = {
-      position: 'absolute',
-      zIndex: '2',
-      left: 0,
-      bottom: 30,
-    }
-    const cover = {
-      position: 'relative',
-      top: 0,
-      left: 0,
-    }
-
 
 		return(
 				<div>
 					<div style={divStyle}>
-						<RecognitionCanvas recognitionAlgorithm={this.alg} 
-							recognitionTime={1000} 
-							recognitionListener={this.test}
-							undoListener={this.test} 
-							redoListener={this.test} 
-							clearCanvasListener={this.test}
-							addGestureListener={this.test}
-							width= {String(screen.width * 0.8)}
-							height= {String(screen.height * 0.5)}
+						<RecognitionCanvas
+							width={String(screen.width * 0.8)}
+							height={String(screen.height * 0.5)}
 							color={this.state.color}
-							beautification={false}
-							disabledGestures={[""]}
-							enabledGestures={[""]}
+							recognitionUsingTimeout={false}
+							doClearCanvas={this.state.clearRecognitionCanvas}
+							clearCanvasHandler={this.clearCanvasCallback}
 						/>
-						<Button onClick={ this.handleClick }> Pick Color</Button>
-						{ this.state.displayColorPicker ? <div style={ popover }>
-
-							<div style={ cover } onClick={ this.handleClose }/>
-								<ChromePicker onChangeComplete={ this.handleChange }/>
-							</div> : null }
-
+						
+						<ButtonToolbar>	
+							<DropdownButton bsStyle={"default"} title={"Color"} onSelect={this.handleSelect}>
+						      <MenuItem eventKey="#000000">Black</MenuItem>
+						      <MenuItem eventKey="#3e65f2">Blue</MenuItem>
+						      <MenuItem eventKey="#ea3434">Red</MenuItem>
+						      <MenuItem eventKey="#f2eb3e">Yellow</MenuItem>
+						    </DropdownButton>
+							<Button onClick={ this.clearCanvas }>Clear Canvas</Button>
+						</ButtonToolbar>
 					</div>
 				</div>
 			);
