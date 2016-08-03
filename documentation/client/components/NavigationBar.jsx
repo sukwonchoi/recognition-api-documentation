@@ -19,11 +19,11 @@ export default class NavigationBar extends Component{
           <Navbar.Toggle />
         </Navbar.Header>
         <Nav pullRight>
-          <LinkContainer to="/demo">
-            <NavItem eventKey={1} href="#">Demo</NavItem>
+        <LinkContainer to ="/gettingstarted">
+            <NavItem eventKey={1} href="#">Geting Started</NavItem>
           </LinkContainer>
-          <LinkContainer to ="/documentation">
-            <NavItem eventKey={2} href="#">Documentation</NavItem>
+          <LinkContainer to="/demo">
+            <NavItem eventKey={2} href="#">Demo</NavItem>
           </LinkContainer>
         </Nav>
       </Navbar>

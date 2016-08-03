@@ -18,11 +18,11 @@ export default class NavigationBar extends Component{
 				sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 				<p>
 					<ButtonToolbar>
+						<LinkContainer to="/gettingstarted">
+							<Button bsStyle="primary" bsSize="large">Getting Started</Button>
+						</LinkContainer>
 						<LinkContainer to="/demo">
 							<Button bsStyle="success" bsSize="large">Demo</Button>
-						</LinkContainer>
-						<LinkContainer to="/documentation">
-							<Button bsStyle="primary" bsSize="large">Documentation</Button>
 						</LinkContainer>
 					</ButtonToolbar>
 				</p>

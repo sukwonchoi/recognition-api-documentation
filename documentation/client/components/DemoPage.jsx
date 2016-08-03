@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import RecognitionCanvas from 'recognition-canvas';
 import Codemirror from 'react-codemirror';
 import { Accordion, Panel } from 'react-bootstrap';
-
+import ApiList from './ApiList.jsx';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/jsx/jsx';
 import 'codemirror/theme/zenburn.css';
@@ -70,6 +70,7 @@ export default class UndoRedoCanvas extends React.Component {
 					   	<ColorCanvas />
 						<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
 					</Panel>
+					<ApiList />
 				</div>
 			);
 		

@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import App from './components/App.jsx'
 
 import DemoPage from './components/DemoPage.jsx';
-import DocumentationPage from './components/DocumentationPage.jsx';
+import GettingStartedPage from './components/GettingStartedPage.jsx';
 import LandingPage from './components/LandingPage.jsx';
 
 
@@ -16,7 +16,7 @@ const router = (
 	<Router history={ browserHistory }>
 		<Route path="/" component={ App }>
 			<IndexRoute name="Home" component={ LandingPage }></IndexRoute>
-			<Route path="/documentation" component={ DocumentationPage }></Route>
+			<Route path="/gettingstarted" component={ GettingStartedPage }></Route>
 			<Route path="/demo" component={ DemoPage }></Route>
 		</Route>
 	</Router>
