@@ -11,7 +11,6 @@ import UndoRedoCanvas from './different_canvases/UndoRedoCanvas.jsx';
 // import NormalDrawingCanvas from './different_canvases/NormalDrawingCanvas.jsx';
 import ColorCanvas from './different_canvases/ColorCanvas.jsx';
 import BeautificationCanvas from './different_canvases/BeautificationCanvas.jsx';
-
 import RecognitionOnlyCanvas from './different_canvases/RecognitionOnlyCanvas.jsx';
 
 export default class DemoPage extends React.Component {
