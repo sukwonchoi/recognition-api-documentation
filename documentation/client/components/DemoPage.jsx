@@ -7,11 +7,12 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/jsx/jsx';
 import 'codemirror/theme/zenburn.css';
 
-import UndoRedoCanvas from './different_canvases/UndoRedoCanvas.jsx';
-import NormalDrawingCanvas from './different_canvases/NormalDrawingCanvas.jsx';
-import ColorCanvas from './different_canvases/ColorCanvas.jsx';
+// import UndoRedoCanvas from './different_canvases/UndoRedoCanvas.jsx';
+// import NormalDrawingCanvas from './different_canvases/NormalDrawingCanvas.jsx';
+// import ColorCanvas from './different_canvases/ColorCanvas.jsx';
+// import BeautificationCanvas from './different_canvases/BeautificationCanvas.jsx';
+
 import RecognitionOnlyCanvas from './different_canvases/RecognitionOnlyCanvas.jsx';
-import BeautificationCanvas from './different_canvases/BeautificationCanvas.jsx';
 
 export default class DemoPage extends React.Component {
 	
@@ -47,19 +48,23 @@ export default class UndoRedoCanvas extends React.Component {
 			readOnly: this.state.readOnly,
 			mode: "javascript"
 		}
-
+		
+		// <UndoRedoCanvas />
+		// <NormalDrawingCanvas />
+		// <ColorCanvas />
+// <BeautificationCanvas />
+						
 		return(
 				<div>
 					<Panel header="Undo and Redo" eventKey="1">
-					 	<UndoRedoCanvas />
+					 	
 						<Codemirror value={this.state.code} onChange={this.updateCode} options={options} ref="cm"/>
 					</Panel>
 					<Panel header="Beautification" eventKey="2">
-					 	<BeautificationCanvas />
-						<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
+					 	<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
 					</Panel>
 					<Panel header="Normal" eventKey="3">
-					   	<NormalDrawingCanvas />
+					   	
 						<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
 					</Panel>
 					<Panel header="Recognition" eventKey="4">
@@ -67,7 +72,7 @@ export default class UndoRedoCanvas extends React.Component {
 						<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
 					</Panel>
 					<Panel header="Color" eventKey="5">
-					   	<ColorCanvas />
+					   	
 						<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
 					</Panel>
 				</div>
