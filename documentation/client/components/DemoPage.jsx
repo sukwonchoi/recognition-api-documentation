@@ -74,6 +74,7 @@ export default class UndoRedoCanvas extends React.Component {
 						
 						<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
 					</Panel>
+					<h3>Props</h3>
 					<ApiList />
 				</div>
 			);

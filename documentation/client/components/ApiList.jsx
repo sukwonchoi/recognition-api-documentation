@@ -71,7 +71,27 @@ export default class ApiList extends React.Component {
       "",
       ""
       );
-    this.description = new Array();
+    this.description = new Array(
+      "Choose between $p & $n",
+      "Choose the recognition time in milliseconds",
+      "Choose whether recognition will be done using timeout",
+      "The callback method when undo is invoked",
+      "The callback method when redo is invoked",
+      "The callback method for when recognize is invoked",
+      "The callback method when clear canvas is invoked",
+      "",
+      "Set width for the canvas",
+      "Set height for the canvas",
+      "Set CSS style for the canvas",
+      "Choose whether beautification will be enabled",
+      "Choose which color to draw with",
+      "Choose which set of gestures to enable",
+      "Trigger undo",
+      "Trigger redo",
+      "Trigger clear canvas",
+      "Trigger recognition",
+      ""
+      );
   }
 
   render(){
@@ -84,7 +104,7 @@ export default class ApiList extends React.Component {
             <td>{this.propNames[i]}</td>
             <td>{this.type[i]}</td>
             <td>{this.default[i]}</td> 
-            <td>{}</td> 
+            <td>{this.description[i]}</td> 
           </tr>
         );
     }
