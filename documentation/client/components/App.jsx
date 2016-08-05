@@ -16,16 +16,7 @@ export default class App extends React.Component {
     return (
       <div>
         <NavigationBar />
-        <PageHeader>
-          <div className="bs-docs-header">
-            <div className="container">
-              Documentation
-            </div>
-          </div>
-        </PageHeader>
-        <div className="container bs-docs-container">
           {this.props.children}
-        </div>
       </div>
     );
   }

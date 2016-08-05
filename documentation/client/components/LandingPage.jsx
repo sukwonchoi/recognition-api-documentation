@@ -13,16 +13,10 @@ export default class LandingPage extends React.Component {
   render () {
     return (
       <div>
-        <WelcomeBox />
-        
+				<div ref="main" className="container bs-docs-container">
+        	<WelcomeBox />
+        </div>
       </div>
     );
   }
 }
-
-// export default const landingPageInstance = (
-//     <LandingPage />
-//   );
-
-// export default landingPageInstance;
-
