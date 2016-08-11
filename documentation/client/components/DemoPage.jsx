@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RecognitionCanvas from 'recognition-canvas';
 import Codemirror from 'react-codemirror';
+import Anchor from './Anchor.jsx';
 import { Accordion, Panel, PageHeader, FormGroup, Checkbox, Nav, SubNav, NavItem } from 'react-bootstrap';
 import { AutoAffix } from 'react-overlays';
 import ApiList from './ApiList.jsx';
@@ -11,6 +12,7 @@ import 'codemirror/theme/zenburn.css';
 import Waypoint from 'react-waypoint';
 
 import UndoRedoCanvas from './different_canvases/UndoRedoCanvas.jsx';
+import UndoRedoSection from './sections/UndoRedoSection.jsx'
 import NormalDrawingCanvas from './different_canvases/NormalDrawingCanvas.jsx';
 import ColorCanvas from './different_canvases/ColorCanvas.jsx';
 import BeautificationCanvas from './different_canvases/BeautificationCanvas.jsx';
@@ -67,7 +69,6 @@ export default class UndoRedoCanvas extends React.Component {
   	});
   }
   componentDidMount() {
-  	console.log("asdf")
     this.afterSections = {};
     Object.keys(this.sections).forEach(
       key => this.afterSections[this.sections[key]] = false
@@ -113,7 +114,7 @@ export default class UndoRedoCanvas extends React.Component {
 
       activeNavItemHref = href;
     }
-
+    console.log("set active nav item: " + activeNavItemHref);
     this.setState({ activeNavItemHref });
   }
 	
@@ -158,43 +159,54 @@ export default class UndoRedoCanvas extends React.Component {
 			readOnly: this.state.readOnly,
 			mode: "javascript"
 		}
-		
-		// <UndoRedoCanvas />
-		// <NormalDrawingCanvas />
-		// <ColorCanvas />
-		//<NormalDrawingCanvas inline/>
-
 
 
 		return(
 				<div>
 					<PageHeader title="Demo"/>
-					<div ref="main" className="container bs-docs-container">
+					<div ref="main" className="container">
 						<div className="row">
 							<div className="col-md-10" role="main">
-								{this.renderScrollSpy(this.sections.undoredo)}
-								<Panel header="Undo and Redo" eventKey="1">
-									<UndoRedoCanvas />
-									<Codemirror value={this.state.code} onChange={this.updateCode} options={options} ref="cm"/>
-								</Panel>
-
-								{this.renderScrollSpy(this.sections.beautification)}
-								<Panel header="Beautification" eventKey="2">
-									<BeautificationCanvas />
-									<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
-								</Panel>
-
-								{this.renderScrollSpy(this.sections.recognition)}
-								<Panel header="Recognition" eventKey="3">
-									<RecognitionOnlyCanvas />
-									<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
-								</Panel>
-
+								
 								{this.renderScrollSpy(this.sections.color)}
-								<Panel header="Color" eventKey="4">
+								<div className="bs-docs-section">
+									<h2 className="page-header">
+										<Anchor id="color">Color</Anchor>
+									</h2>
+									<p>Different ink colors.</p>
 									<ColorCanvas />
 									<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
-								</Panel>
+								</div>
+
+								{this.renderScrollSpy(this.sections.recognition)}
+								<div className="bs-docs-section">
+									<h2 className="page-header">
+										<Anchor id="recognition">Recognition</Anchor>
+									</h2>
+									<p>Basic recognition with a button.</p>
+									<RecognitionOnlyCanvas />
+									<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
+								</div>
+
+								{this.renderScrollSpy(this.sections.undoredo)}
+								<div className="bs-docs-section">
+									<h2 className="page-header">
+										<Anchor id="undoredo">Undo Redo</Anchor>
+									</h2>
+									<p>Basic undo and redo functionality.</p>
+									<UndoRedoCanvas />
+									<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
+								</div>
+
+								{this.renderScrollSpy(this.sections.beautification)}
+								<div className="bs-docs-section">
+									<h2 className="page-header">
+										<Anchor id="beautification">Beautification</Anchor>
+									</h2>
+									<p>Basic beautification.</p>
+									<BeautificationCanvas />
+									<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
+								</div>
 
 								{this.renderScrollSpy(this.sections.selection)}
 								<Panel header="Selection" eventKey="5">
@@ -208,10 +220,10 @@ export default class UndoRedoCanvas extends React.Component {
 								<AutoAffix viewportOffsetTop={15} container={this.getMain}>
 									<div className="bs-docs-sidebar hidden-print" role="complementary">
 										<Nav className="bs-docs-sidenav" activeHref={this.state.activeNavItemHref} onSelect={this.handleNavItemSelect}>
+											<NavItem href={this.sections.color}>Color</NavItem>
+											<NavItem href={this.sections.recognition}>Recognition</NavItem>
 											<NavItem href={this.sections.undoredo}>Undo/Redo</NavItem>
 											<NavItem href={this.sections.beautification}>Beautification</NavItem>
-											<NavItem href={this.sections.recognition}>Recognition</NavItem>
-											<NavItem href={this.sections.color}>Color</NavItem>
 											<NavItem href={this.sections.selection}>Selection</NavItem>
 										</Nav>
 										<a className="back-to-top" href="#top">Back to top</a>
@@ -225,4 +237,3 @@ export default class UndoRedoCanvas extends React.Component {
 		
 	}
 }
-

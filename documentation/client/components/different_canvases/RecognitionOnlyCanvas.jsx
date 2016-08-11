@@ -28,6 +28,7 @@ export default class RecognitionOnlyCanvas extends React.Component {
 	}
 
 	recognitionHandler(gesture){
+		window.alert(gesture);
 		this.setState({
 	    	recognize: false,
 	    });
