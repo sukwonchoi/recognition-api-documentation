@@ -37,8 +37,12 @@ export default class GettingStartedPage extends React.Component {
 							</Row>
 							<Row>
 								<div className="bs-callout bs-callout-warning">
-									<h4>RecognitionCanvas is a React component</h4>
+									<h4>Recognition Canvas is a React component</h4>
 									<p>Although it has seemless integration with different operating systems, it must be used with React only</p>
+								</div>
+								<div className="bs-callout bs-callout-danger">
+									<h4>Recognition Canvas is under active development</h4>
+									<p>API of Recognition Canvas may change frequently and users are encouraged to read the update notes and the documentations before updating to a newer version</p>
 								</div>
 							</Row>
 							<Row>

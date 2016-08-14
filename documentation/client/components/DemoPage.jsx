@@ -19,18 +19,266 @@ import BeautificationCanvas from './different_canvases/BeautificationCanvas.jsx'
 import RecognitionOnlyCanvas from './different_canvases/RecognitionOnlyCanvas.jsx';
 
 export default class DemoPage extends React.Component {
-	
+
 	constructor(){
 		super();
 		this.state = {
 			activeNavItemHref: null,
-			code :
-				`
+			codeColor :
+`
 import React, { Component } from 'react';
-import RecognitionCanvas from 'recognition-canvas'
-export default class UndoRedoCanvas extends React.Component {
+import RecognitionCanvas from 'recognition-canvas';
 
-}`,
+export default class ColorCanvas extends React.Component {
+	
+	constructor(){
+		super();
+
+		this.state = {
+		    color: "#000000",
+		    clearRecognitionCanvas: false,
+		};
+
+		this.handleSelect = this.handleSelect.bind(this);
+		this.clearCanvas = this.clearCanvas.bind(this);
+		this.clearCanvasCallback = this.clearCanvasCallback.bind(this);
+	}
+
+	handleSelect(eventKey, event){
+		this.setState({
+			color: eventKey,
+		});
+	}
+
+	clearCanvas(){
+	  	this.setState({
+	      clearRecognitionCanvas: true,
+	    });
+	}
+	
+	clearCanvasCallback(){
+		this.setState({
+	      clearRecognitionCanvas: false,
+	    });
+	 }
+
+	render(){
+		return(
+				<div>
+					<div>
+						<RecognitionCanvas
+							width={900}
+							height={400}
+							color={this.state.color}
+							recognitionUsingTimeout={false}
+							doClearCanvas={this.state.clearRecognitionCanvas}
+							clearCanvasHandler={this.clearCanvasCallback}
+							className=""
+						/>
+						
+						--Some sort of input to change the color--
+					</div>
+				</div>
+			);
+		
+	}
+}
+`,
+			codeRecognition :
+`
+import React, { Component } from 'react';
+import RecognitionCanvas from 'recognition-canvas';
+
+import { Button, ButtonToolbar } from 'react-bootstrap'
+
+export default class RecognitionOnlyCanvas extends React.Component {
+	
+	constructor(){
+		super();
+
+		this.recognitionHandler = this.recognitionHandler.bind(this);
+		this.clearCanvas = this.clearCanvas.bind(this);
+		this.clearCanvasCallback = this.clearCanvasCallback.bind(this);
+		this.recognize = this.recognize.bind(this);
+		this.recognitionHandler = this.recognitionHandler.bind(this);
+
+		this.state = {
+				recognize: false,
+	     		enabledGestures: ["X", "O", "Vertical Line", "Horizontal Line"],
+	      		clearRecognitionCanvas: false,
+	  		};
+	}
+
+	recognize(){
+		this.setState({
+			recognize: true,
+		});
+	}
+
+	recognitionHandler(gesture){
+		window.alert(gesture);
+		this.setState({
+	    	recognize: false,
+	    });
+	}
+
+	clearCanvas(){
+	  	this.setState({
+	      clearRecognitionCanvas: true,
+	    });
+	}
+	
+	clearCanvasCallback(){
+		this.setState({
+	      clearRecognitionCanvas: false,
+	    });
+	}
+
+
+	render(){
+		return(
+				<div>
+					<div style={divStyle}>
+						<RecognitionCanvas
+							width={String(screen.width * 0.8)}
+							height={String(screen.height * 0.5)}
+							doRecognition={this.state.recognize}
+							doClearCanvas={this.state.clearRecognitionCanvas}
+							clearCanvasHandler={this.clearCanvasCallback}
+							recognitionHandler={this.recognitionHandler}
+							recognitionUsingTimeout={false}
+							enabledGestures={this.state.enabledGestures}
+						/>
+						
+					</div>
+				</div>
+			);
+			
+	}
+}
+
+
+`,
+			codeUndoRedo : 
+
+`
+import React, { Component } from 'react';
+import RecognitionCanvas from 'recognition-canvas';
+
+import { Button, ButtonToolbar } from 'react-bootstrap'
+
+export default class UndoRedoCanvas extends React.Component {
+	
+	constructor(){
+		super();
+		this.undo = this.undo.bind(this);
+		this.undoCallback = this.undoCallback.bind(this);
+		this.redo = this.redo.bind(this);
+		this.redoCallback = this.redoCallback.bind(this);
+
+
+		this.state = {
+      		enabledGestures: ["X", "O"],
+      		undo: false,
+      		redo: false,
+  		};
+	}
+	undo(){
+    	this.setState({ undo: true });
+  	}
+
+	redo(){
+    	this.setState({ redo: true });
+  	} 
+
+	redoCallback(gesture){
+		this.setState({ redo: false });
+  	}
+
+ 	undoCallback(gesture){
+		this.setState({ undo: false });
+  	}
+
+	render(){
+
+		const divStyle = {
+	      border: '1px solid black',
+    	};
+    	const canvasStyle = {
+
+    	};
+
+		return(
+				<div style={divStyle}>
+					<RecognitionCanvas
+						recognitionUsingTimeout={false}
+						doUndo={this.state.undo}
+						doRedo={this.state.redo}
+						undoHandler={this.undoCallback} 
+						redoHandler={this.redoCallback}
+						width= {900}
+						height= {String(screen.height * 0.5)}
+						beautification={false}
+						enabledGestures={this.state.enabledGestures}
+						style={canvasStyle}
+					/>
+					<ButtonToolbar>
+						<Button onClick={ this.undo }>Undo</Button>
+						<Button onClick={ this.redo }>Redo</Button>
+					</ButtonToolbar>
+				</div>
+			);
+		
+	}
+}
+`,
+			codeBeautification :
+`
+import React, { Component } from 'react';
+import RecognitionCanvas from 'recognition-canvas';
+
+import { Button, ButtonToolbar } from 'react-bootstrap'
+
+export default class BeautificationCanvas extends React.Component {
+	
+	constructor(){
+		super();
+
+		this.recognitionCallback = this.recognitionCallback.bind(this);
+	
+		this.state = {
+	      enabledGestures: ["X", "O", "Vertical Line", "Horizontal Line"],
+	  	};
+	}
+
+	recognitionCallback(gesture){
+		console.log(gesture.shape);
+	}
+
+	render(){
+
+		const divStyle = {
+	      border: '2px solid black',
+    	};
+
+		return(
+				<div>
+					<div style={divStyle}>
+						<RecognitionCanvas 
+							recognitionTime={600} 
+							recognitionHandler={this.recognitionCallback}
+							width= {String(screen.width * 0.8)}
+							height= {String(screen.height * 0.5)}
+							beautification={true}
+							enabledGestures={this.state.enabledGestures}
+						/>
+					</div>
+				</div>
+			);
+		
+	}
+}
+`,
 		}
 
 		this.updateCode = this.updateCode.bind(this);
@@ -175,7 +423,7 @@ export default class UndoRedoCanvas extends React.Component {
 									</h2>
 									<p>Different ink colors.</p>
 									<ColorCanvas />
-									<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
+									<Codemirror value={this.state.codeColor} onChange={this.updateCode} options={options} />
 								</div>
 
 								{this.renderScrollSpy(this.sections.recognition)}
@@ -185,7 +433,7 @@ export default class UndoRedoCanvas extends React.Component {
 									</h2>
 									<p>Basic recognition with a button.</p>
 									<RecognitionOnlyCanvas />
-									<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
+									<Codemirror value={this.state.codeRecognition} onChange={this.updateCode} options={options} />
 								</div>
 
 								{this.renderScrollSpy(this.sections.undoredo)}
@@ -195,7 +443,7 @@ export default class UndoRedoCanvas extends React.Component {
 									</h2>
 									<p>Basic undo and redo functionality.</p>
 									<UndoRedoCanvas />
-									<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
+									<Codemirror value={this.state.codeUndoRedo} onChange={this.updateCode} options={options} />
 								</div>
 
 								{this.renderScrollSpy(this.sections.beautification)}
@@ -205,14 +453,8 @@ export default class UndoRedoCanvas extends React.Component {
 									</h2>
 									<p>Basic beautification.</p>
 									<BeautificationCanvas />
-									<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
+									<Codemirror value={this.state.codeBeautification} onChange={this.updateCode} options={options} />
 								</div>
-
-								{this.renderScrollSpy(this.sections.selection)}
-								<Panel header="Selection" eventKey="5">
-								
-									<Codemirror value={this.state.code} onChange={this.updateCode} options={options} />
-								</Panel>
 								<h3>Props</h3>
 								<ApiList />
 							</div>
@@ -224,7 +466,6 @@ export default class UndoRedoCanvas extends React.Component {
 											<NavItem href={this.sections.recognition}>Recognition</NavItem>
 											<NavItem href={this.sections.undoredo}>Undo/Redo</NavItem>
 											<NavItem href={this.sections.beautification}>Beautification</NavItem>
-											<NavItem href={this.sections.selection}>Selection</NavItem>
 										</Nav>
 										<a className="back-to-top" href="#top">Back to top</a>
 									</div>
