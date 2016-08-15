@@ -47,7 +47,6 @@ export default class UndoRedoCanvas extends React.Component {
 		return(
 				<div style={divStyle}>
 					<RecognitionCanvas
-						recognitionUsingTimeout={false}
 						doUndo={this.state.undo}
 						doRedo={this.state.redo}
 						undoHandler={this.undoCallback} 
