@@ -12,7 +12,6 @@ import 'codemirror/theme/zenburn.css';
 import Waypoint from 'react-waypoint';
 
 import UndoRedoCanvas from './different_canvases/UndoRedoCanvas.jsx';
-import UndoRedoSection from './sections/UndoRedoSection.jsx'
 import NormalDrawingCanvas from './different_canvases/NormalDrawingCanvas.jsx';
 import ColorCanvas from './different_canvases/ColorCanvas.jsx';
 import BeautificationCanvas from './different_canvases/BeautificationCanvas.jsx';
@@ -294,11 +293,11 @@ export default class BeautificationCanvas extends React.Component {
 		this.setActiveNavItem = this.setActiveNavItem.bind(this);
 
 		this.sections = {
+			color: "#color",
+			recognition: "#recognition",
 			undoredo: "#undoredo",
 			beautification: "#beautification",
-			recognition: "#recognition",
-			color: "#color",
-			selection: "#selection",
+			props: "#props",
 		}
 
 	}
@@ -421,7 +420,6 @@ export default class BeautificationCanvas extends React.Component {
 									<h2 className="page-header">
 										<Anchor id="color">Color</Anchor>
 									</h2>
-									<p>Different ink colors.</p>
 									<ColorCanvas />
 									<Codemirror value={this.state.codeColor} onChange={this.updateCode} options={options} />
 								</div>
@@ -431,9 +429,8 @@ export default class BeautificationCanvas extends React.Component {
 									<h2 className="page-header">
 										<Anchor id="recognition">Recognition</Anchor>
 									</h2>
-									<p>Basic recognition with a button.</p>
 									<RecognitionOnlyCanvas />
-									<Codemirror value={this.state.codeRecognition} onChange={this.updateCode} options={options} />
+									<Codemirror value={this.state.codeUndoRedo} onChange={this.updateCode} options={options} />
 								</div>
 
 								{this.renderScrollSpy(this.sections.undoredo)}
@@ -441,7 +438,6 @@ export default class BeautificationCanvas extends React.Component {
 									<h2 className="page-header">
 										<Anchor id="undoredo">Undo Redo</Anchor>
 									</h2>
-									<p>Basic undo and redo functionality.</p>
 									<UndoRedoCanvas />
 									<Codemirror value={this.state.codeUndoRedo} onChange={this.updateCode} options={options} />
 								</div>
@@ -451,12 +447,17 @@ export default class BeautificationCanvas extends React.Component {
 									<h2 className="page-header">
 										<Anchor id="beautification">Beautification</Anchor>
 									</h2>
-									<p>Basic beautification.</p>
 									<BeautificationCanvas />
 									<Codemirror value={this.state.codeBeautification} onChange={this.updateCode} options={options} />
 								</div>
-								<h3>Props</h3>
-								<ApiList />
+
+								{this.renderScrollSpy(this.sections.props)}
+								<div className="bs-docs-section">
+									<h2 className="page-header">
+										<Anchor id="props">Props</Anchor>
+									</h2>
+									<ApiList />
+								</div>
 							</div>
 							<div className="col-md-2 bs-docs-sidebar-holder">
 								<AutoAffix viewportOffsetTop={15} container={this.getMain}>
@@ -466,6 +467,7 @@ export default class BeautificationCanvas extends React.Component {
 											<NavItem href={this.sections.recognition}>Recognition</NavItem>
 											<NavItem href={this.sections.undoredo}>Undo/Redo</NavItem>
 											<NavItem href={this.sections.beautification}>Beautification</NavItem>
+											<NavItem href={this.sections.props}>Props</NavItem>
 										</Nav>
 										<a className="back-to-top" href="#top">Back to top</a>
 									</div>

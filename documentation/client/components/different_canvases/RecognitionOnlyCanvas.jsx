@@ -28,7 +28,7 @@ export default class RecognitionOnlyCanvas extends React.Component {
 	}
 
 	recognitionHandler(gesture){
-		window.alert(gesture);
+		window.alert(gesture.shape);
 		this.setState({
 	    	recognize: false,
 	    });
@@ -57,6 +57,7 @@ export default class RecognitionOnlyCanvas extends React.Component {
 				<div>
 					<div style={divStyle}>
 						<RecognitionCanvas
+
 							width={String(screen.width * 0.8)}
 							height={String(screen.height * 0.5)}
 							doRecognition={this.state.recognize}
