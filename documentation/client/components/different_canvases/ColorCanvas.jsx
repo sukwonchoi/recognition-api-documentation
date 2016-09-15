@@ -24,6 +24,7 @@ export default class ColorCanvas extends React.Component {
 	}
 
 	clearCanvas(){
+		toastr.info('Canvas Cleared');
 	  	this.setState({
 	      clearRecognitionCanvas: true,
 	    });
@@ -37,8 +38,8 @@ export default class ColorCanvas extends React.Component {
 
 	render(){
 		const divStyle = {
-				position: 'relative',
-	      border: '1px solid black',
+			position: 'relative',
+	      	border: '1px solid black',
     	};
 
 		return(

@@ -13,7 +13,7 @@ export default class NavigationBar extends Component{
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/">
-              <p>Digital Ink Recognition API</p>
+              <p>Recognition Canvas API</p>
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle />

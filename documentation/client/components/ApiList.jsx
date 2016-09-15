@@ -10,7 +10,7 @@ export default class ApiList extends React.Component {
 
     this.propNames = new Array(
       "recognitionAlgorithm",
-      "recognitionTime",
+      "recognitionTimeoutTime",
       "recognitionUsingTimeout",
       "undoHandler",
       "redoHandler",

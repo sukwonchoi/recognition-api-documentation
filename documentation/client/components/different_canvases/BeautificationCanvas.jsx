@@ -25,12 +25,13 @@ export default class BeautificationCanvas extends React.Component {
 	}
 	
 	clearCanvasCallback(){
+		toastr.info('Canvas Cleared');
 		this.setState({
 			clearRecognitionCanvas: false,
 		});
 	 }
 	recognitionCallback(gesture){
-		console.log(gesture.shape);
+		toastr.success('Beautified gesture: ' + gesture.shape);
 	}
 
 	render(){
@@ -46,6 +47,7 @@ export default class BeautificationCanvas extends React.Component {
 							recognitionTime={600} 
 							recognitionHandler={this.recognitionCallback}
 							doClearCanvas={this.state.clearRecognitionCanvas}
+							clearCanvasHandler={this.clearCanvasCallback}
 							width= {String(screen.width * 0.8)}
 							height= {String(screen.height * 0.5)}
 							beautification={true}

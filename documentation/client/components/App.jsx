@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavigationBar from './NavigationBar.jsx';
-
+import PageFooter from './PageFooter.jsx';
 
 import { PageHeader } from 'react-bootstrap';
 
@@ -17,6 +17,7 @@ export default class App extends React.Component {
       <div>
         <NavigationBar />
           {this.props.children}
+        <PageFooter />
       </div>
     );
   }

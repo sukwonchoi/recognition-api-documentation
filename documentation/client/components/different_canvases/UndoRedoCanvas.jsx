@@ -28,10 +28,12 @@ export default class UndoRedoCanvas extends React.Component {
   	} 
 
 	redoCallback(gesture){
+		toastr.info('Redo last stroke');
 		this.setState({ redo: false });
   	}
 
  	undoCallback(gesture){
+		toastr.info('Undo last stroke');
 		this.setState({ undo: false });
   	}
 

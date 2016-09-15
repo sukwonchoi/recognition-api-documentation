@@ -28,13 +28,15 @@ export default class RecognitionOnlyCanvas extends React.Component {
 	}
 
 	recognitionHandler(gesture){
-		window.alert(gesture.shape);
+		toastr.success('Reocgnized: ' + gesture.shape);
+
 		this.setState({
 	    	recognize: false,
 	    });
 	  }
 
 	clearCanvas(){
+		toastr.info('Canvas Cleared');
 	  	this.setState({
 	      clearRecognitionCanvas: true,
 	    });
