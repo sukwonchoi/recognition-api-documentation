@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import RecognitionCanvas from 'recognition-canvas';
 import Codemirror from 'react-codemirror';
 import Anchor from './Anchor.jsx';
-import { Accordion, Panel, PageHeader, FormGroup, Checkbox, Nav, SubNav, NavItem } from 'react-bootstrap';
+import { Accordion, Collapse, Button, Panel, PageHeader, FormGroup, Checkbox, Nav, Row, SubNav, NavItem } from 'react-bootstrap';
 import { AutoAffix } from 'react-overlays';
 import ApiList from './ApiList.jsx';
 import 'codemirror/lib/codemirror.css';
@@ -23,6 +23,10 @@ export default class DemoPage extends React.Component {
 		super();
 		this.state = {
 			activeNavItemHref: null,
+			colorOpen: true,
+			recognitionOpen: true,
+			undoOpen: true,
+			beautificationOpen: true,
 			codeColor :
 `
 import React, { Component } from 'react';
@@ -301,7 +305,18 @@ export default class BeautificationCanvas extends React.Component {
 		}
 
 	}
-
+	handleArrowClick(event){
+		var source = event.target || event.srcElement;
+		window.source = source;
+		console.log(source);
+		var icon = source.getElementsByClassName("collapsible-icon")[0].getElementsByClassName("glyphicon")[0];
+		var iconClass = icon.className;
+		if (iconClass.includes("glyphicon-minus")) {
+			icon.className = "glyphicon glyphicon-plus";
+		} else {
+			icon.className = "glyphicon glyphicon-minus";
+		}
+	}
 	getMain(){
 		return this.refs.Main;
 	}
@@ -411,7 +426,11 @@ export default class BeautificationCanvas extends React.Component {
 		return(
 				<div>
 					<PageHeader title="Demo"/>
+
+											
 					<div ref="main" className="container">
+							<div className="collapsible-icon"></div>
+							<i className="fa fa-minus"></i>
 						<div className="row">
 							<div className="col-md-10" role="main">
 								
@@ -421,16 +440,39 @@ export default class BeautificationCanvas extends React.Component {
 										<Anchor id="color">Color</Anchor>
 									</h2>
 									<ColorCanvas />
-									<Codemirror value={this.state.codeColor} onChange={this.updateCode} options={options} />
+									<div className="collapsible-content">
+										<Button className="collapsible-header" onClick={ (e) => { console.log("sweg"); this.setState({colorOpen: !this.state.colorOpen }); this.handleArrowClick(e)}}>
+											
+											<div className="collapsible-icon">Code</div>
+										</Button>
+										<Collapse in={this.state.colorOpen}>
+											<div>
+												<Row>
+													<Codemirror value={this.state.codeColor} onChange={this.updateCode} options={options} />
+												</Row>
+											</div>
+										</Collapse>
+									</div>
 								</div>
-
 								{this.renderScrollSpy(this.sections.recognition)}
 								<div className="bs-docs-section">
 									<h2 className="page-header">
 										<Anchor id="recognition">Recognition</Anchor>
 									</h2>
 									<RecognitionOnlyCanvas />
-									<Codemirror value={this.state.codeUndoRedo} onChange={this.updateCode} options={options} />
+									<div className="collapsible-content">
+										<Button className="collapsible-header" onClick={ (e) => { this.setState({recognitionOpen: !this.state.recognitionOpen }); this.handleArrowClick(e)}}>
+											
+											<div className="collapsible-icon">Code</div>
+										</Button>
+										<Collapse in={this.state.recognitionOpen}>
+											<div>
+												<Row>
+													<Codemirror value={this.state.codeUndoRedo} onChange={this.updateCode} options={options} />
+												</Row>
+											</div>
+										</Collapse>
+									</div>
 								</div>
 
 								{this.renderScrollSpy(this.sections.undoredo)}
@@ -439,7 +481,19 @@ export default class BeautificationCanvas extends React.Component {
 										<Anchor id="undoredo">Undo Redo</Anchor>
 									</h2>
 									<UndoRedoCanvas />
-									<Codemirror value={this.state.codeUndoRedo} onChange={this.updateCode} options={options} />
+									<div className="collapsible-content">
+										<Button className="collapsible-header" onClick={ (e) => { this.setState({undoOpen: !this.state.undoOpen }); this.handleArrowClick(e)}}>
+											
+											<div className="collapsible-icon">Code</div>
+										</Button>
+										<Collapse in={this.state.undoOpen}>
+											<div>
+												<Row>
+													<Codemirror value={this.state.codeUndoRedo} onChange={this.updateCode} options={options} />
+												</Row>
+											</div>
+										</Collapse>
+									</div>
 								</div>
 
 								{this.renderScrollSpy(this.sections.beautification)}
@@ -448,7 +502,19 @@ export default class BeautificationCanvas extends React.Component {
 										<Anchor id="beautification">Beautification</Anchor>
 									</h2>
 									<BeautificationCanvas />
-									<Codemirror value={this.state.codeBeautification} onChange={this.updateCode} options={options} />
+									<div className="collapsible-content">
+										<Button className="collapsible-header" onClick={ (e) => { this.setState({beautificationOpen: !this.state.beautificationOpen }); this.handleArrowClick(e)}}>
+											
+											<div className="collapsible-icon">Code</div>
+										</Button>
+										<Collapse in={this.state.beautificationOpen}>
+											<div>
+												<Row>
+													<Codemirror value={this.state.codeBeautification} onChange={this.updateCode} options={options} />
+												</Row>
+											</div>
+										</Collapse>
+									</div>
 								</div>
 
 								{this.renderScrollSpy(this.sections.props)}

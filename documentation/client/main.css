@@ -207,3 +207,21 @@ code, kbd, pre, samp {
   overflow: hidden;
   border: 0;
 }
+
+.collapsible-container .collapsible-content .collapsible-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-radius: 0;
+}
+
+.collapsible-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-radius: 0;
+}
+
+/*.collapsible-container .collapsible-content .collapsible-header .collapsible-title {
+  text-transform: uppercase;
+}*/

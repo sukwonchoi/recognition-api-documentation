@@ -38,22 +38,19 @@ export default class ColorCanvas extends React.Component {
 
 	render(){
 		const divStyle = {
-			position: 'relative',
-	      	border: '1px solid black',
-    	};
+	      border: '1px solid black',
+	   	};
 
 		return(
 				<div>
-					<div>
+					<div style={divStyle}>
 						<RecognitionCanvas
-							width={900}
-							height={400}
+							width={String(screen.width * 0.8)}
+							height={String(screen.height * 0.5)}
 							color={this.state.color}
 							recognitionUsingTimeout={false}
 							doClearCanvas={this.state.clearRecognitionCanvas}
 							clearCanvasHandler={this.clearCanvasCallback}
-							style={divStyle}
-							className=""
 						/>
 						
 						<ButtonToolbar>	
