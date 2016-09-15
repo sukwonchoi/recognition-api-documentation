@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { PageHeader, Well, Panel, Col, Grid, Row} from 'react-bootstrap';
+import { Well, Panel, Col, Grid, Row} from 'react-bootstrap';
+import PageHeader from './PageHeader.jsx';
 import Codemirror from 'react-codemirror';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/jsx/jsx';
