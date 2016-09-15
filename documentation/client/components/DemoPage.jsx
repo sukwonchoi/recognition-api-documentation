@@ -422,6 +422,17 @@ export default class BeautificationCanvas extends React.Component {
 			mode: "javascript"
 		}
 
+		let label = (bool)=>{
+			if(bool){
+				var inside_label = "Hide Code";
+			}else{
+				var inside_label = "Show Code";
+			}
+
+			return (
+				<div>{inside_label}</div>
+			);
+		}
 
 		return(
 				<div>
@@ -443,7 +454,7 @@ export default class BeautificationCanvas extends React.Component {
 									<div className="collapsible-content">
 										<Button className="collapsible-header" onClick={ (e) => { console.log("sweg"); this.setState({colorOpen: !this.state.colorOpen }); this.handleArrowClick(e)}}>
 											
-											<div className="collapsible-icon">Code</div>
+											<div className="collapsible-icon">{label(this.state.colorOpen)}</div>
 										</Button>
 										<Collapse in={this.state.colorOpen}>
 											<div>
@@ -462,8 +473,7 @@ export default class BeautificationCanvas extends React.Component {
 									<RecognitionOnlyCanvas />
 									<div className="collapsible-content">
 										<Button className="collapsible-header" onClick={ (e) => { this.setState({recognitionOpen: !this.state.recognitionOpen }); this.handleArrowClick(e)}}>
-											
-											<div className="collapsible-icon">Code</div>
+											<div className="collapsible-icon">{label(this.state.recognitionOpen)}</div>
 										</Button>
 										<Collapse in={this.state.recognitionOpen}>
 											<div>
@@ -484,7 +494,7 @@ export default class BeautificationCanvas extends React.Component {
 									<div className="collapsible-content">
 										<Button className="collapsible-header" onClick={ (e) => { this.setState({undoOpen: !this.state.undoOpen }); this.handleArrowClick(e)}}>
 											
-											<div className="collapsible-icon">Code</div>
+											<div className="collapsible-icon">{label(this.state.undoOpen)}</div>
 										</Button>
 										<Collapse in={this.state.undoOpen}>
 											<div>
@@ -505,7 +515,7 @@ export default class BeautificationCanvas extends React.Component {
 									<div className="collapsible-content">
 										<Button className="collapsible-header" onClick={ (e) => { this.setState({beautificationOpen: !this.state.beautificationOpen }); this.handleArrowClick(e)}}>
 											
-											<div className="collapsible-icon">Code</div>
+											<div className="collapsible-icon">{label(this.state.beautificationOpen)}</div>
 										</Button>
 										<Collapse in={this.state.beautificationOpen}>
 											<div>
